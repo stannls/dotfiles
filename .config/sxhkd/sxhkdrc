@@ -7,8 +7,33 @@ super + Return
 	kitty
 
 # program launcher
-super + @space
+super + d
 	dmenu_run
+
+XF86AudioRaiseVolume
+        pactl set-sink-volume @DEFAULT_SINK@ +10%
+
+XF86AudioLowerVolume
+	pactl set-sink-volume @DEFAULT_SINK@ -10%
+
+XF86AudioMute
+	pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+# open chrome
+super + c
+	chromium-dmenu
+
+# passmenu
+super + p
+	passmenu
+
+# duckduckgo dmenu
+super + shift + d
+	duckduckgo
+
+# i3lockr
+super + shift + x
+	i3lockr -b 20
 
 # make sxhkd reload its configuration files:
 super + Escape
