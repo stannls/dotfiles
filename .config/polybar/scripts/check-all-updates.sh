@@ -3,7 +3,7 @@
 
 LOCK=/tmp/checkupdatelock
 while [ -f "$LOCK" ]; do
-sleep 0.2
+sleep 0.5
 done
 
 touch /tmp/checkupdatelock
@@ -23,3 +23,4 @@ else
     echo "0"
 fi
 rm /tmp/checkupdatelock
+rm -rf /tmp/trizen-neo
