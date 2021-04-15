@@ -47,4 +47,6 @@ xrandr --output DVI-D-1 --mode 1920x1080 --pos 0x300 --rotate normal --output DP
 compton -b --respect-prop-shadow --config /home/neo/.config/picom.conf &
 feh --bg-scale /usr/share/wallpapers/feh/910936.jpg &
 wmname compiz &
+dunst &
 /home/neo/.config/polybar/launch-bspwm.sh &
+xss-lock /home/neo/.config/i3/lock.sh &

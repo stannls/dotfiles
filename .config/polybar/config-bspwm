@@ -345,7 +345,7 @@ font-4 = "Font Awesome 5 Brands:pixelsize=8;1"
 
 modules-left = bspwm xwindow
 modules-center = 
-modules-right = arrow1 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow2 pavolume arrow3 arch-aur-updates arrow2 date
+modules-right = spotify arrow3 networkspeedup networkspeeddown arrow2 memory2 arrow3 cpu2 arrow2 pavolume arrow3 arch-aur-updates arrow2 date
 
 tray-detached = false
 tray-offset-x = 0
@@ -1653,3 +1653,31 @@ format-background = ${colors.background}
 ###############################################################################
 # vim:ft=dosini
 
+
+[module/spotify-prev]
+type = custom/script
+exec = echo "\u2190"
+format = <label>
+click-left = playerctl previous spotify
+
+[module/spotify-play-pause]
+type = custom/ipc
+hook-0 = echo "\u25BA"
+hook-1 = echo "\u23F8"
+initial = 1
+click-left = playerctl play-pause spotify
+
+[module/spotify-next]
+type = custom/script
+exec = echo "\u2192"
+format = <label>
+click-left = playerctl next spotify
+
+[module/spotify]
+type = custom/script
+interval = 1
+format = <label>
+exec = python .config/polybar/scripts/spotify_status.py -f '{artist}: {song}'
+format-foreground = #fefefe
+format-background = #668bd7
+format-prefix = " "

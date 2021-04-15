@@ -4,8 +4,10 @@
 
 # terminal emulator
 super + Return
-	kitty
+  alacritty
 
+super + m
+  pactl set-source-mute 2 toggle
 # program launcher
 super + d
 	dmenu_run
