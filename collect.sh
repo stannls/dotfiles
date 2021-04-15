@@ -5,3 +5,4 @@ cp -r ~/.config/polybar/* .config/polybar
 cp ~/.config/sxhkd/* .config/sxhkd
 cp ~/.config/nvim/init.vim .config/nvim/init.vim
 cp ~/.config/alacritty/alacritty.yml .config/alacritty/alacritty.yml
+cp ~/.config/dunst/dunstrc .config/dunst/dunstrc
