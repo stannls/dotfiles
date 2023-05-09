@@ -1,4 +1,4 @@
 #!/bin/bash
-pkill -u "$USER" -USR1 dunst
+kill -STOP $(pidof lxqt-notificationd)
 i3lockr -b 25
-pkill -u "$USER" -USR2 dunst
+kill -CONT $(pidof lxqt-notificationd)
