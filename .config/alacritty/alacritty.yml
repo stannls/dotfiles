@@ -1,21 +1,90 @@
-background_opacity: 0.8
+window:
+
+
+  # Window class (Linux/BSD only):
+  class:
+    # Application instance name
+    instance: Alacritty
+    # General application class
+    general: Alacritty
+
+scrolling:
+  # Maximum number of lines in the scrollback buffer.
+  # Specifying '0' will disable scrolling.
+  history: 5000
+
+
+# Font configuration
 font:
+  # Normal (roman) font face
   normal:
-    family: Source Code Pro
+    family: iosevka
     style: Regular
 
+  # Bold font face
   bold:
-    family: Source Code Pro
+    family: iosevka
     style: Bold
 
+  # Italic font face
   italic:
-    family: Source Code Pro
+    family: iosevka
     style: Italic
 
+  # Bold italic font face
   bold_italic:
-    family: Source Code Pro
+    family: iosevka
     style: Bold Italic
 
-  size: 11
-env:
-  TERM: xterm-256color
+  # Point size
+  size: 8.0
+
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+    x: 0
+    y: 4
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increasing `x` moves the glyph to the right,
+  # increasing `y` moves the glyph upwards.
+  glyph_offset:
+    x: 0
+    y: 4
+
+# TokyoNight Alacritty Colors
+colors:
+  # Default colors
+  primary:
+    background: '0x222436'
+    foreground: '0xc8d3f5'
+
+  # Normal colors
+  normal:
+    black:   '0x1b1d2b'
+    red:     '0xff757f'
+    green:   '0xc3e88d'
+    yellow:  '0xffc777'
+    blue:    '0x82aaff'
+    magenta: '0xc099ff'
+    cyan:    '0x86e1fc'
+    white:   '0x828bb8'
+
+  # Bright colors
+  bright:
+    black:   '0x444a73'
+    red:     '0xff757f'
+    green:   '0xc3e88d'
+    yellow:  '0xffc777'
+    blue:    '0x82aaff'
+    magenta: '0xc099ff'
+    cyan:    '0x86e1fc'
+    white:   '0xc8d3f5'
+
+  indexed_colors:
+    - { index: 16, color: '0xff966c' }
+    - { index: 17, color: '0xc53b53' }
+    
+  
+window:
+  opacity: 0.8

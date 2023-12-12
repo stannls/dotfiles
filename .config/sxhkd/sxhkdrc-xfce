@@ -4,15 +4,7 @@
 
 # terminal emulator
 super + Return
-	alacritty
-	
-# Launch nvim
-super + shift + Return
-	alacritty -e nvim
-
-# Run yay
-super + shift + u
-	alacritty -e yay
+	kitty
 
 # program launcher
 super + d
@@ -27,9 +19,17 @@ XF86AudioLowerVolume
 XF86AudioMute
 	pactl set-sink-mute @DEFAULT_SINK@ toggle
 
+# open chrome
+super + c
+	chromium-dmenu
+
 # passmenu
 super + p
 	passmenu
+
+# duckduckgo dmenu
+super + shift + d
+	duckduckgo
 
 # i3lockr
 super + shift + x
@@ -148,4 +148,3 @@ super + {Left,Down,Up,Right}
 # Exmatrikulation
 super + e
 	librewolf https://www.sle.kit.edu/downloads/Sonstige/Exmatrikulation_WEB_Formular.pdf
-
