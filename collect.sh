@@ -7,3 +7,4 @@ cp ~/.config/nvim/init.vim .config/nvim/init.vim
 cp ~/.config/nvim/coc-settings.json .config/nvim/coc-settings.json
 cp ~/.config/alacritty/alacritty.yml .config/alacritty/alacritty.yml
 cp ~/.config/dunst/dunstrc .config/dunst/dunstrc
+cp ~/.config/rofi/* .config/rofi

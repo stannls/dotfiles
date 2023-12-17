@@ -44,5 +44,6 @@ compton -b --respect-prop-shadow --config /home/yannis/.config/picom.conf &
 feh --bg-scale /usr/share/wallpapers/feh/910936.jpg &
 wmname compiz &
 /home/yannis/.config/polybar/launch-bspwm.sh &
+~/.config/bspwm/keyboard-block.sh &
 xss-lock ~/.config/i3/lock.sh &
 xinput set-prop 11 305 0

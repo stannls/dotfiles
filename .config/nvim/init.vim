@@ -140,6 +140,11 @@ noremap <C-q> :<C-U>tabprevious<CR>
 inoremap <C-q> <C-\><C-N>:tabprevious<CR>
 cnoremap <C-q> <C-C>:tabprevious<CR>
 
+" Map CRTL-P to open coc commands"
+noremap <C-p> :<C-U>CocCommand<CR>
+inoremap <C-p> <C-\><C-N>:CocCommand<CR>
+cnoremap <C-p> <C-C>:CocCoammand<CR>
+
 "Mapping for new tab"
 noremap <C-n> :<C-U>tabnew<CR>
 inoremap <expr> <C-n> !pumvisible() ? '<C-\><C-N>:tabnew<CR>' : ''
