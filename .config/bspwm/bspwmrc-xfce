@@ -44,5 +44,6 @@ compton -b --respect-prop-shadow --config /home/yannis/.config/picom.conf &
 wmname compiz &
 xss-lock ~/.config/i3/lock.sh &
 feh --bg-scale /usr/share/feh/astorias.jpg &
+killall xfce4-panel
 xfce4-panel &
 xinput set-prop 11 305 0
