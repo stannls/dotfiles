@@ -26,6 +26,7 @@ Plug 'preservim/nerdtree'
 Plug 'alec-gibson/nvim-tetris'
 Plug 'xiyaowong/transparent.nvim'
 Plug 'mhinz/vim-startify'
+Plug 'stannls/vim-checkstyle'
 
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
@@ -155,3 +156,8 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<cr
 
 set clipboard +=unnamedplus
 
+" Checkstyle plugin
+let g:Checkstyle_Classpath = "/usr/share/java/checkstyle/checkstyle.jar"
+let g:Checkstyle_XML = "/home/yannis/Downloads/checkstyle-sheet3.xml"
+
+autocmd BufWritePost *.java :Checkstyle
