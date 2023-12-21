@@ -158,6 +158,12 @@ set clipboard +=unnamedplus
 
 " Checkstyle plugin
 let g:Checkstyle_Classpath = "/usr/share/java/checkstyle/checkstyle.jar"
-let g:Checkstyle_XML = "/home/yannis/Downloads/checkstyle-sheet3.xml"
+
+if has('win32') || has ('win64')
+    let g:Checkstyle_XML = $VIM."/Downloads/checkstyle-sheet3.xml"
+else
+    let g:Checkstyle_XML = $HOME."/Downloads/checkstyle-sheet3.xml"
+endif
 
 autocmd BufWritePost *.java :Checkstyle
+autocmd BufRead,BufNewFile *.java :Checkstyle
