@@ -37,7 +37,7 @@ font:
     style: Bold Italic
 
   # Point size
-  size: 8.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -52,39 +52,34 @@ font:
     x: 0
     y: 4
 
-# TokyoNight Alacritty Colors
+ # Colors (Iris)
 colors:
   # Default colors
   primary:
-    background: '0x222436'
-    foreground: '0xc8d3f5'
+    background: '#272537'
+    foreground: '#e8e6e9'
 
   # Normal colors
   normal:
-    black:   '0x1b1d2b'
-    red:     '0xff757f'
-    green:   '0xc3e88d'
-    yellow:  '0xffc777'
-    blue:    '0x82aaff'
-    magenta: '0xc099ff'
-    cyan:    '0x86e1fc'
-    white:   '0x828bb8'
+    black:   '#111133'
+    red:     '#d61d52'
+    green:   '#48a842'
+    yellow:  '#e1a51c'
+    blue:    '#5556d3'
+    magenta: '#8650d3'
+    cyan:    '#52afb7'
+    white:   '#9f9aa7'
 
   # Bright colors
   bright:
-    black:   '0x444a73'
-    red:     '0xff757f'
-    green:   '0xc3e88d'
-    yellow:  '0xffc777'
-    blue:    '0x82aaff'
-    magenta: '0xc099ff'
-    cyan:    '0x86e1fc'
-    white:   '0xc8d3f5'
-
-  indexed_colors:
-    - { index: 16, color: '0xff966c' }
-    - { index: 17, color: '0xc53b53' }
-    
+    black:   '#484867'
+    red:     '#e15877'
+    green:   '#71ab3a'
+    yellow:  '#c6a642'
+    blue:    '#6d6dc9'
+    magenta: '#956ad3'
+    cyan:    '#6ab6bd'
+    white:   '#e8e6e9'   
   
 window:
   opacity: 0.8
