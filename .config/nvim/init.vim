@@ -26,6 +26,7 @@ Plug 'preservim/nerdtree'
 Plug 'alec-gibson/nvim-tetris'
 Plug 'xiyaowong/transparent.nvim'
 Plug 'mhinz/vim-startify'
+Plug 'Mofiqul/vscode.nvim'
 Plug 'stannls/vim-checkstyle'
 
 let g:airline#extensions#branch#enabled = 0
@@ -130,7 +131,7 @@ syntax enable
 hi Normal guibg=NONE ctermbg=NONE
 set number
 
-colorscheme tokyonight-moon
+colorscheme tokyonight
 
 " CTRL-Tab is next tab
 noremap <C-e> :<C-U>tabnext<CR>
@@ -160,10 +161,26 @@ set clipboard +=unnamedplus
 let g:Checkstyle_Classpath = "/usr/share/java/checkstyle/checkstyle.jar"
 
 if has('win32') || has ('win64')
-    let g:Checkstyle_XML = $VIM."/Downloads/checkstyle-sheet3.xml"
+    let g:Checkstyle_XML = $VIM."/Downloads/checkstyle-sheet4-5.xml"
 else
-    let g:Checkstyle_XML = $HOME."/Downloads/checkstyle-sheet3.xml"
+    let g:Checkstyle_XML = $HOME."/Downloads/checkstyle-sheet4-5.xml"
 endif
 
+" Folding
 autocmd BufWritePost *.java :Checkstyle
 autocmd BufRead,BufNewFile *.java :Checkstyle
+autocmd BufReadPost,FileReadPost * normal zR
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
+lua << EOF
+require("nvim-treesitter.configs").setup({
+    ensure_installed = { "javascript", "typescript", "lua", "vim", "json", "html", "rust", "tsx" },
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+        enable = true,
+    },
+})
+EOF
