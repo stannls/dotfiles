@@ -1,0 +1,176 @@
+#!/bin/sh
+
+set -eu
+
+autotype=0
+copyisset=0
+fileisuser=0
+help=0
+onlypassword=0
+squash=0
+typeisset=0
+
+COPY_CMD="wl-copy"
+TYPE_CMD="wtype -"
+
+_trim() {
+    var="$*"
+    # remove leading whitespace characters
+    var="${var#"${var%%[![:space:]]*}"}"
+    # remove trailing whitespace characters
+    var="${var%"${var##*[![:space:]]}"}"
+    printf '%s' "$var"
+}
+
+# the explicit newlines here are funky, but needed due to command substitution
+# stripping trailing newlines so `printf '%s\n' "$line"` cannot be used
+_parse_fields() {
+	has_username=0
+	fields="$(pass show "$password" | tail -n +2 | cut -d: -f1 -s)"
+	field_list="password
+"
+	if [ "$fileisuser" -eq 1 ]; then
+		has_username=1
+		line="username"
+		field_list="$field_list$line
+"
+	fi
+	for line in $fields; do
+		if [ "$line" = "username" ]; then
+			has_username=1
+			field_list="$field_list$line
+"
+		elif [ "$line" = "otpauth" ]; then
+			field_list="${field_list}OTP
+"
+		elif [ "$line" = autotype_always ]; then
+			autotype=1
+		else
+			field_list="$field_list$line
+"
+		fi
+	done
+	if [ "$typeisset" -eq 1 ] && [ "$has_username" -eq 1 ]; then
+		printf "autotype
+"
+	fi
+	printf '%s' "$field_list"
+}
+
+_pass_field() {
+	_trim "$(pass show "$password" | tail -n+2 | grep "^${*}:.*$" | cut -d: -f1 -s --complement)"
+}
+
+_pass_get() {
+	if [ "$1" = "password" ]; then
+		pass show "$password" | { IFS= read -r pass; printf %s "$pass"; }
+	elif [ "$1" = "OTP" ]; then
+		pass otp "$password" | tail -n1 | { IFS= read -r pass; printf %s "$pass"; }
+	elif [ "$fileisuser" -eq 1 ] && [ "$1" = "username" ]; then
+		printf %s "$passname"
+	else
+		_pass_field "$@"
+	fi
+}
+
+_usage() {
+	printf "Usage: wofi-pass [options]\n"
+	printf "	-a, --autotype		autotype whatever entry is chosen\n"
+	printf "	-c, --copy=[cmd]	copy to clipboard. Defaults to wl-copy if no cmd is given.\n"
+	printf "	-f, --fileisuser	use the name of the password file as username\n"
+	printf "	-h, --help		show this help message\n"
+	printf "	-s, --squash		don't show field choice if password file only contains password\n"
+	printf "	-t, --type=[cmd]	type the selection instead of copying to clipboard.\n"
+	printf "				Defaults to wtype if no cmd is given.\n"
+}
+
+OPTS="$(getopt --options ac::fhst:: --longoptions autotype,copy::,fileisuser,help,squash,type:: -n 'wofi-pass' -- "$@")"
+eval set -- "$OPTS"
+while true; do
+  case "$1" in
+    -a | --autotype		) autotype=1; shift ;;
+		-c	)	copyisset=1; copy_cmd="$COPY_CMD"; shift ;;
+		--copy	)
+			copyisset=1
+			if [ -n "$2" ]; then
+				copy_cmd="$2"
+				shift 2
+			else
+				copy_cmd="$COPY_CMD"
+				shift
+			fi ;;
+		-f | --fileisuser	) fileisuser=1; shift;;
+    -h | --help				) help=1; shift ;;
+    -s | --squash			) squash=1; shift ;;
+		-t	)	typeisset=1; type_cmd="$TYPE_CMD"; shift ;;
+		--type	)
+			typeisset=1
+			if [ -n "$2" ]; then
+				type_cmd="$2"
+				shift 2
+			else
+				type_cmd="$TYPE_CMD"
+				shift
+			fi ;;
+    --	) shift; break;;
+    *		) break;;
+  esac
+done
+
+if [ "$help" -eq 1 ]; then
+	_usage >&2
+	exit 0
+fi
+
+if [ "$typeisset" -eq 1 ] && [ "$copyisset" -eq 1 ]; then
+	printf "copy and type cannot be used at same time. Please pass only one.\n"
+	exit 1
+elif [ "$typeisset" -eq 0 ] && [ "$copyisset" -eq 0 ]; then
+	printf "neither -c/--copy or -t/--type passed. Defaulting to copying with wl-copy."
+	copy_cmd="$COPY_CMD"
+fi
+
+cd "${PASSWORD_STORE_DIR:-$HOME/.password-store}"
+password_files="$(find . -name "*.gpg" | sed "s/^\.\/\(.*\)\.gpg$/\1/")"
+
+password=$(printf '%s\n' "$password_files" | wofi --dmenu)
+[ -n "$password" ] || exit
+
+if [ "$fileisuser" -eq 1 ]; then
+	passname=$(printf '%s' "$password" | sed "s,.*/\(\),\1,")
+fi
+
+field_list="$(_parse_fields)"
+field_count="$(printf '%s' "$field_list" | wc -l)"
+if [ "$squash" -eq 1 ] && [ "$field_count" -eq 0 ]; then
+	field="password"
+	onlypassword=1
+elif [ "$autotype" -ne 1 ]; then
+	field=$(printf '%s\n' "$field_list" | wofi --dmenu)
+fi
+
+# get the command to output to
+if [ "$typeisset" -eq 1 ]; then
+	output_cmd=$type_cmd
+else
+	output_cmd=$copy_cmd
+fi
+
+if [ "$autotype" -eq 1 ] || [ "$field" = "autotype" ]; then
+	if [ "$fileisuser" -eq 1 ]; then
+		username="$passname"
+	else
+		username=$(_pass_get "username")
+	fi
+	password=$(_pass_get "password")
+
+	# check if we are autotyping a password-only file
+	if [ "$onlypassword" -eq 1 ]; then
+		printf '%s\n' "$password" | $output_cmd
+	else
+		printf '%s\t%s\n' "$username" "$password" | $output_cmd
+	fi
+
+else
+	_pass_get "$field" | $output_cmd
+fi
