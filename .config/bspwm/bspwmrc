@@ -40,6 +40,7 @@ bspc config urgent_border_color 	      "#dd2727"
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
+bspc rule -a anki state=floating
 compton -b --respect-prop-shadow --config /home/yannis/.config/picom.conf &
 feh --bg-scale /usr/share/wallpapers/feh/910936.jpg &
 wmname compiz &

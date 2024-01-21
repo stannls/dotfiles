@@ -8,3 +8,7 @@ cp ~/.config/nvim/coc-settings.json .config/nvim/coc-settings.json
 cp ~/.config/alacritty/alacritty.toml .config/alacritty/alacritty.toml
 cp ~/.config/dunst/dunstrc .config/dunst/dunstrc
 cp ~/.config/rofi/* .config/rofi
+cp ~/.config/hypr/* .config/hypr
+cp -r  ~/.config/waybar/* .config/waybar
+cp ~/.config/wofi/* .config/wofi
+cp -r ~/.config/swaylock/* .config/swaylock
