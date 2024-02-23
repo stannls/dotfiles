@@ -12,3 +12,4 @@ cp ~/.config/hypr/* .config/hypr
 cp -r  ~/.config/waybar/* .config/waybar
 cp ~/.config/wofi/* .config/wofi
 cp -r ~/.config/swaylock/* .config/swaylock
+cp -r ~/.config/cava .config/cava
