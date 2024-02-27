@@ -2,7 +2,9 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+bspc monitor HDMI-A-0 -d 1 2 3 4 5
+bspc monitor DVI-D-0 -d 6 7 8 9 10
+
 
 #### BSPWM configuration ####
 #bspc config border_radius                8
@@ -42,8 +44,6 @@ bspc config urgent_border_color 	      "#dd2727"
 # bspc rule -a Screenkey manage=off
 compton -b --respect-prop-shadow --config /home/yannis/.config/picom.conf &
 wmname compiz &
-xss-lock ~/.config/i3/lock.sh &
 feh --bg-scale /usr/share/feh/astorias.jpg &
-killall xfce4-panel
 xfce4-panel &
 xinput set-prop 11 305 0

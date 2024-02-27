@@ -2,7 +2,8 @@
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+bspc monitor HDMI-A-0 -d 1 2 3 4 5
+bspc monitor DVI-D-0 -d 6 7 8 9 10
 
 #### BSPWM configuration ####
 #bspc config border_radius                8
@@ -40,11 +41,9 @@ bspc config urgent_border_color 	      "#dd2727"
 # bspc rule -a mplayer2 state=floating
 # bspc rule -a Kupfer.py focus=on
 # bspc rule -a Screenkey manage=off
-bspc rule -a anki state=floating
 compton -b --respect-prop-shadow --config /home/yannis/.config/picom.conf &
 feh --bg-scale /usr/share/wallpapers/feh/910936.jpg &
 wmname compiz &
 /home/yannis/.config/polybar/launch-bspwm.sh &
-~/.config/bspwm/keyboard-block.sh &
 xss-lock ~/.config/i3/lock.sh &
 xinput set-prop 11 305 0
