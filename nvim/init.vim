@@ -28,6 +28,8 @@ Plug 'xiyaowong/transparent.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'stannls/vim-checkstyle'
+Plug 'lervag/vimtex'
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
@@ -128,6 +130,7 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 
 set termguicolors
 syntax enable
+filetype plugin indent on
 hi Normal guibg=NONE ctermbg=NONE
 set number
 
@@ -177,6 +180,7 @@ set foldexpr=nvim_treesitter#foldexpr()
 lua << EOF
 require("nvim-treesitter.configs").setup({
     ensure_installed = { "javascript", "typescript", "lua", "vim", "json", "html", "rust", "tsx" },
+    ignore_install = {"latex"},
     sync_install = false,
     auto_install = true,
     highlight = {
