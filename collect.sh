@@ -1,15 +1,15 @@
-cp ~/.config/i3/* .config/i3
-cp ~/.config/picom.conf .config
-cp ~/.config/bspwm/* .config/bspwm
-cp -r ~/.config/polybar/* .config/polybar
-cp ~/.config/sxhkd/* .config/sxhkd
-cp ~/.config/nvim/init.vim .config/nvim/init.vim
-cp ~/.config/nvim/coc-settings.json .config/nvim/coc-settings.json
-cp ~/.config/alacritty/alacritty.toml .config/alacritty/alacritty.toml
-cp ~/.config/dunst/dunstrc .config/dunst/dunstrc
-cp ~/.config/rofi/* .config/rofi
-cp ~/.config/hypr/* .config/hypr
-cp -r  ~/.config/waybar/* .config/waybar
-cp ~/.config/wofi/* .config/wofi
-cp -r ~/.config/swaylock/* .config/swaylock
-cp -r ~/.config/cava .config/cava
+cp ~/.config/i3/* i3
+cp ~/.config/picom.conf .
+cp ~/.config/bspwm/* bspwm
+cp -r ~/.config/polybar/* polybar
+cp ~/.config/sxhkd/* sxhkd
+cp ~/.config/nvim/init.vim nvim/init.vim
+cp ~/.config/nvim/coc-settings.json nvim/coc-settings.json
+cp ~/.config/alacritty/alacritty.toml alacritty/alacritty.toml
+cp ~/.config/dunst/dunstrc dunst/dunstrc
+cp ~/.config/rofi/* rofi
+cp ~/.config/hypr/* hypr
+cp -r  ~/.config/waybar/* waybar
+cp ~/.config/wofi/* wofi
+cp -r ~/.config/swaylock/* swaylock
+cp -r ~/.config/cava cava
