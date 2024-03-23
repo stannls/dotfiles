@@ -25,11 +25,16 @@ Plug 'airblade/vim-gitgutter'
 Plug 'preservim/nerdtree'
 Plug 'alec-gibson/nvim-tetris'
 Plug 'xiyaowong/transparent.nvim'
-Plug 'mhinz/vim-startify'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'stannls/vim-checkstyle'
 Plug 'lervag/vimtex'
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+
+Plug 'startup-nvim/startup.nvim'
+" Dependencys for startup plugin
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
@@ -126,7 +131,9 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeChDirMode = 2
 
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-t> :Telescope file_browser<CR>
+nnoremap <C-r> :Telescope oldfiles<CR>
+nnoremap <C-f> :Telescope live_grep<CR>
 
 set termguicolors
 syntax enable
@@ -177,6 +184,15 @@ autocmd BufReadPost,FileReadPost * normal zR
 set foldmethod=expr
 set foldexpr=nvim_treesitter#foldexpr()
 
+" Bookmarks for startify
+let g:startify_bookmarks = [
+\	{ 'H': '~/.config/hypr/hyprland.conf' },
+\	{ 'V': '~/.config/nvim/init.vim' },
+\	{ 'Z': '~/.config/zshrc' },
+\	{ 'A': '~/.config/alacritty/alacritty.yml' },
+\  ]
+
+
 lua << EOF
 require("nvim-treesitter.configs").setup({
     ensure_installed = { "javascript", "typescript", "lua", "vim", "json", "html", "rust", "tsx" },
@@ -186,5 +202,8 @@ require("nvim-treesitter.configs").setup({
     highlight = {
         enable = true,
     },
+})
+require"startup".setup({
+	theme = "dashboard"
 })
 EOF
