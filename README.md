@@ -18,7 +18,7 @@ Currently this repo houses configurations for the following programs:
 
 ## Pictures
 ### 2 Screen Hyprland Setup
-![Image 2-Screen](https://imgur.com/a/rESK4o5)
+![Image 2-Screen](https://i.imgur.com/hSyzDm7.png)
 
 ### Neovim
-![Image Neovim](https://imgur.com/a/rESK4o5)
+![Image Neovim](https://i.imgur.com/7IgHgZN.png)
