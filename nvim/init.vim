@@ -35,6 +35,7 @@ Plug 'startup-nvim/startup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
+Plug 'fannheyward/telescope-coc.nvim'
 
 let g:airline#extensions#branch#enabled = 0
 let g:airline#extensions#hunks#enabled = 0
@@ -204,7 +205,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>d  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
@@ -308,4 +309,14 @@ require("nvim-treesitter.configs").setup({
 require"startup".setup({
 	theme = "dashboard"
 })
+require("telescope").setup({
+	extensions = {
+		coc = {
+			theme = 'ivy',
+			prefer_locations = true,
+			push_cursor_on_edit = true,
+		}
+	},
+})
+require('telescope').load_extension('coc')
 EOF
