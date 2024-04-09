@@ -131,7 +131,7 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:NERDTreeChDirMode = 2
 
-nnoremap <C-t> :Telescope file_browser<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-r> :Telescope oldfiles<CR>
 nnoremap <C-f> :Telescope live_grep<CR>
 
