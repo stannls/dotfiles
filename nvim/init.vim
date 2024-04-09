@@ -60,6 +60,9 @@ Plug 'Rigellute/rigel'
 Plug 'pineapplegiant/spaceduck'
 call plug#end()
 
+set tabstop=4
+set shiftwidth=4 smarttab
+
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 " utf-8 byte sequence
 set encoding=utf-8
